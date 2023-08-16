@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2023_08_15_203610) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "teacher_name", null: false
+    t.string "teacher_area", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_teachers_on_email", unique: true
