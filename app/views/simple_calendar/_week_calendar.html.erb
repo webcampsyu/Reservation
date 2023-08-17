@@ -43,7 +43,9 @@
                 <% if check_reservation(@reservations, day, time) %>
                   <%= '×' %>
                 <% else %>
-                  <%= '○' %>
+                  <%= link_to new_reservation_path(day: day, time: time) do %>
+                    <%= '○' %>
+                  <% end %>
                 <% end %>
               </td>
             <% end %>
