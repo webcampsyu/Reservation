@@ -24,11 +24,19 @@
           
           <!--メインメニュー-->
           <nav id="menubar">
-            <ul>
-              <li><%= link_to "マイページ", user_path(:id) %></li>
-              <li><%= link_to "カリキュラム予約", user_path(:id) %></li>
-              <li><%= link_to "e-ラーニング", user_path(:id) %></li>
-            </ul>
+            <% if teacher_signed_in? %>
+              <ul>
+                <li><%= link_to "講師マイページ", teacher_path(:id) %></li>
+                <li><%= link_to "日程管理", teacher_path(:id) %></li>
+              </ul>
+            <% else %>
+              <ul>
+                <li><%= link_to "マイページ", user_path(:id) %></li>
+                <li><%= link_to "カリキュラム予約", user_path(:id) %></li>
+                <li><%= link_to "e-ラーニング", user_path(:id) %></li>
+              </ul>
+            <% end %>
+
           
             <address>
               <h3>お問い合わせ</h3>
