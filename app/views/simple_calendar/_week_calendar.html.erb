@@ -14,6 +14,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>時間</th>
         <% date_range.slice(0, 7).each do |day| %>
           <th><%= t('date.abbr_day_names')[day.wday] %></th>
         <% end %>
@@ -23,6 +24,7 @@
     <tbody>
       <% date_range.each_slice(7) do |week| %>
         <tr>
+          <td></td>
           <% week.each do |day| %>
             <%= content_tag :td, class: calendar.td_classes_for(day) do %>
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
@@ -38,6 +40,11 @@
             <td><%= time %></td>
             <% week.each do |day| %>
               <td>
+                <% if check_reservation(@reservations, day, time) %>
+                  <%= '×' %>
+                <% else %>
+                  <%= '○' %>
+                <% end %>
               </td>
             <% end %>
           </tr>
