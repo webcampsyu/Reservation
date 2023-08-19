@@ -24,6 +24,10 @@ class ReservationsController < ApplicationController
     @teacher_id = params[:teacher_id]
     @start_time = Time.zone.parse(params[:day] + " " + params[:time] + " " + "JST") # @dayと@timeを結合して、JST（日本標準時）として日時を作成
     @end_time = @start_time + 90.minutes
+    message = Reservation.check_reservation_day(@start_time) #予約データのチェック
+    if !!message #messageが真の場合、条件成立
+      redirect_to user_teacher_reservations_path(@user.id, @teacher.id), flash: { alert: message }
+    end
   end 
   
   def teacher_new
