@@ -45,9 +45,7 @@
                   <%= '×' %>
                 <% else %>
                 <% if current_page?(action: "teacher_index") %>
-                <%= link_to teacher_reservations_new_path(current_teacher, day: day, time: time) do %>
                   <%= '○' %>
-                <% end %>
                 <% else %>
                   <%= link_to new_reservation_path(day: day, time: time) do %>
                     <%= '○' %>

@@ -4,6 +4,22 @@
       <h1><%= @teacher.teacher_name %>先生予約画面</h1>
       <p>3ヶ月先まで予約することができます。</p>
     </div>
+    <div class="col-12 mt-3 content">
+    <%= form_with model: @reservation, url: teacher_reservations_new_path, local: true, class: 'form' do |form| %>
+      <div class="day form-group">
+        <%= form.label :day, '開始時間' %>
+        <%= form.datetime_field :start_time, class: 'form-control' %>
+      </div>
+      <div class="day form-group">
+        <%= form.label :day, '終了時間' %>
+        <%= form.datetime_field :end_time, class: 'form-control' %>
+      </div>
+      <%= form.hidden_field :teacher_id, value: current_teacher.id %>
+      <div class="submit">
+        <%= form.submit value: '日程を登録する', class: 'btn btn-primary mx-auto d-block' %>
+      </div>
+    <% end %>
+    </div>
     <div class="col-12 mt-3">
       <%= week_calendar events: @reservations do |date, reservations| %>
         <%= date.day %>
