@@ -27,7 +27,7 @@
             <% if teacher_signed_in? %>
               <ul>
                 <li><%= link_to "講師マイページ", teacher_path(:id) %></li>
-                <li><%= link_to "日程管理", teacher_path(:id) %></li>
+                <li><%= link_to "日程管理", teacher_reservations_index_path(:id) %></li>
               </ul>
             <% else %>
               <ul>
