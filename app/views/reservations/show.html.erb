@@ -5,13 +5,11 @@
     </div>
     <div class="col-12 mt-3 text-center content">
       <div>
-        <label><strong>日付：</strong></label>
-        <p style="display:inline;"><%= @reservation.day %></p>
-      </div>
+        <label><strong>開始時間</strong></label>
+        <%= l @reservation.start_time, format: :short %>
       <div>
-        <label><strong>時間：</strong></label>
-        <p style="display:inline;"><%= @reservation.time %></p>
-      </div>
+        <label><strong>終了時間</strong></label>
+        <%= l @reservation.end_time, format: :short %>
     </div>
     <div class="col-12 text-right">
       <%= link_to '予約画面に戻る', reservations_path %>

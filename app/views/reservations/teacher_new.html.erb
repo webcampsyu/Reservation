@@ -14,17 +14,17 @@
         <%= form.text_field :time, class: 'form-control', value: @time, readonly: true %>
       </div>
       <div class="time form-group">
-        <%= form.label :time, '講師ID' %>
-        <%= form.text_field :teacher_id, class: 'form-control', value: current_teacher.id, readonly: true %>
-      </div>
-      <div class="time form-group">
         <%= form.label :time, '開始時間' %>
-        <%= form.text_field :start_time, class: 'form-control', value: @start_time, readonly: true %>
+        <%= l @start_time, format: :short %> <!-- lメソッドで日時オブジェクトを表示。surftimeよりコードが短くなる-->
+                                             <!-- format: :shortは日付を簡潔に表示するオプション-->
       </div>
       <div class="time form-group">
         <%= form.label :time, '終了時間' %>
-        <%= form.text_field :end_time, class: 'form-control', value: @end_time, readonly: true %>
+        <%= l @end_time, format: :short %>
       </div>
+      <%= form.hidden_field :teacher_id, value: current_teacher.id %>
+      <%= form.hidden_field :start_tiem, value: @start_time %>
+      <%= form.hidden_field :end_time, value: @end_time %>
       <div class="submit">
         <%= form.submit value: '予約する', class: 'btn btn-primary mx-auto d-block' %>
       </div>
