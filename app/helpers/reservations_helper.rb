@@ -28,11 +28,11 @@ module ReservationsHelper
     reservations_count = reservations.count #渡された予約データの要素数を代入
     if reservations_count > 1
       reservations.each do |reservation|
-        result = reservation[:start_time] <= Time.zone.parse(day + " " + time + " " + "JST") && Time.zone.parse(day + " " + time + " " + "JST") <= reservation[:end_time] #時間の範囲をチェックする。論理演算子<=や&&を使用して、予約開始時刻よりも大きくかつ予約の終了時刻よりも小さい場合resultにtrueが代入される。それ以外はfalseが代入される
+        result = reservation[:start_time] <= Time.zone.parse(day.to_s + " " + time + " " + "JST") && Time.zone.parse(day.to_s + " " + time + " " + "JST") <= reservation[:end_time] #時間の範囲をチェックする。論理演算子<=や&&を使用して、予約開始時刻よりも大きくかつ予約の終了時刻よりも小さい場合resultにtrueが代入される。それ以外はfalseが代入される
         return result if result
       end
     elsif reservations_count == 1
-      result = reservations[0][:day].eql?(day.strftime("%Y-%m-%d")) && reservations[0][:time].eql?(time)
+      result = reservations[0][:start_time] <= Time.zone.parse(day.to_s + " " + time + " " + "JST") && Time.zone.parse(day.to_s + " " + time + " " + "JST") <= reservations[0][:end_time]
       return result if result
     end
     return result

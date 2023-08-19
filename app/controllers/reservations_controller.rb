@@ -18,7 +18,7 @@ class ReservationsController < ApplicationController
     @day = params[:day]
     @time = params[:time]
     @teacher_id = params[:teacher_id]
-    @start_time = DateTime.parse(@day + " " + @time + " " + "JST") # @dayと@timeを結合して、JST（日本標準時）として日時を作成
+    @start_time = Time.zone.parse(@day + " " + @time + " " + "JST") # @dayと@timeを結合して、JST（日本標準時）として日時を作成
     @end_time = @start_time + 90.minutes
   end 
   
