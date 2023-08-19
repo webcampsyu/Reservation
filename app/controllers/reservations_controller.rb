@@ -57,6 +57,11 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
+      UserMailer.with(reservation: @reservation).reservation_email.deliver_later #メール痩身をするための処理
+                                                                                 #UserMailerはメール送信用のメーラークラス
+                                                                                 #reservation: @reservationはreservationというパラメータ名で@reservationインスタンス変数をメール送信メソッドに渡す。
+                                                                                 #.reservation_emailはメール送信のメソッド。UserMailerクラス内で定義されたメソッド
+                                                                                 #.deliver_laterはメールを非同期で送信するためのメソッド　
       redirect_to reservation_path @reservation.id
     else
       render :new
