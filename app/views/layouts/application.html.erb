@@ -51,6 +51,10 @@
         <div id="contents">
         
         <main>
+          <% flash.each do |message_type, message| %>
+            <%= message %>
+          <% end %>
+          
           <div class="notifications">
             <div class="notice"><%= notice %></div>
             <div class="alert"><%= alert %></div>

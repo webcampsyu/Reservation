@@ -68,6 +68,17 @@ class ReservationsController < ApplicationController
     end 
   end 
   
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    if @reservation.destroy
+      flash[:success] = "予約を削除しました。"
+      redirect_to user_path(current_user.id)
+    else 
+      render "users/show"
+    end 
+  end 
+  
+  
   private
   def reservation_params
     params.require(:reservation).permit(:user_id, :start_time, :end_time)

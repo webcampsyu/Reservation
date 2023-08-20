@@ -322,7 +322,7 @@ footer .pr {display: block;}
 /*「お知らせ」ブロック
 ---------------------------------------------------------------------------*/
 /*お知らせブロック*/
-#new {
+#show {
 	margin: 0;
 	display: flex;			/*flexボックスを使う指定*/
 	flex-wrap: wrap;		/*折り返す指定*/
@@ -333,18 +333,18 @@ footer .pr {display: block;}
 }
 
 /*日付(dt)、記事(dd)共通設定*/
-#new dt,
-#new dd {
+.show dt,
+.show dd {
 	padding: 2px 0;	/*上下、左右へのボックス内の余白*/
 }
 
 /*日付(dt)設定*/
-#new dt {
+.show dt {
 	width: 8em;	/*幅。8文字(em)分。*/
 }
 
 /*記事(dd)設定*/
-#new dd {
+.show dd {
 	width: calc(100% - 8em);	/*「8em」は上の「#new dt」のwidthの値です。*/
 }
 
