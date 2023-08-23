@@ -1,20 +1,23 @@
 <section class="box1">
 
-  <h2>お知らせ</h2>
+  <h2><%= @teacher.teacher_name %>さんのマイページ</h2>
   
-  <dl id="new">
-  <dt>2022/07/09</dt>
-  <dd>form.htmlがサンプル用のファイル(contact.html)と同一内容になっており、そのままでは自動フォームとして使えなくなっていたので修正。</dd>
-  <dt>2022/01/21</dt>
-  <dd>tp_esthe4配布開始。<a href="company.html#about">テンプレートの解説はこちら。</a></dd>
-  <dt>20XX/00/00</dt>
-  <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-  <dt>20XX/00/00</dt>
-  <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-  <dt>20XX/00/00</dt>
-  <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
-  <dt>20XX/00/00</dt>
-  <dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+  <dl class="show">
+    <%= teacher_reservations.each do |teacher_reservation| %>
+      <dt>開始時間</dt>
+      <dd>
+        <%= l teacher_reservation.start_time, format: :short %>
+      </dd>
+      <dt>生徒名</dt>
+      <dd>
+        <%= check_user(teacher_reservation) %>
+      </dd>
+    <% end %>
+    <% if @teacher_reservations.blank? %> <!--blank?メソッド：オプジェクトが空であるかどうかを判定-->
+      <dt>
+        <dd>予約はありません。</dd>
+      </dt>
+    <% end %>
   </dl>
 
 </section>
