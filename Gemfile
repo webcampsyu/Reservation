@@ -34,6 +34,7 @@ gem "simple_calendar", "~> 2.0" #カレンダー表示機能
 gem 'pry-rails'
 gem 'dotenv-rails', groups: [:development, :test] #環境変数を管理するGem。ネット上に公開したくない情報を扱い、自動で読み込む
 gem 'carrierwave' #Webアプリケーションにファイルをアップロード機能を提供
+gem 'jquery-turbolinks'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

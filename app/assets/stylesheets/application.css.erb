@@ -202,7 +202,7 @@ header address i {
 	width: 50px;	/*幅*/
 	height: 50px;	/*高さ*/
 	cursor: pointer;
-	background: rgba(0,0,0,0.6) url(../images/ham.png) no-repeat center top/50px;/*背景色、ハンバーガメニュー画像の読み込み、50pxは幅の指定*/
+	background: rgba(0,0,0,0.6) url("<%= asset_path('ham.png') %>") no-repeat center top/50px;/*背景色、ハンバーガメニュー画像の読み込み、50pxは幅の指定*/
 }
 /*×印が出ている状態の設定。*/
 #menubar_hdr.ham {
