@@ -2,9 +2,9 @@
   <html lang="ja">
     <head>
       <meta charset="UTF-8">
-      <title>エステサロン向け 無料ホームページテンプレート esthe4</title>
+      <title>予約サイト</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="ここにサイト説明を入れます">
+      <meta name="description" content="予約サイトです。">
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
@@ -36,13 +36,6 @@
                 <li><%= link_to "e-ラーニング", user_path(:id) %></li>
               </ul>
             <% end %>
-
-          
-            <address>
-              <h3>お問い合わせ</h3>
-              <span class="tel"><i class="fas fa-phone-volume"></i>0120-000-000</span>
-              <p class="btn"><a href="contact.html"><i class="far fa-envelope"></i>お問合せフォーム</a></p>
-            </address>
           
           </nav>
         
@@ -57,13 +50,8 @@
           
         <%= yield %>
         
-          <ul id="footermenu">
-            <li><a href="index.html">ホーム</a></li>
-            <li><a href="company.html">会社概要</a></li>
-          </ul>
-        
         <footer>
-          <small>Copyright&copy; <a href="index.html">Esthetic Salon</a> All Rights Reserved.</small>
+          <small>Copyright&copy; <a href="index.html">JSMC</a> All Rights Reserved.</small>
           <span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design : Template-Party》</a></span>
         </footer>
         

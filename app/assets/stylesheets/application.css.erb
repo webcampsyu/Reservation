@@ -37,7 +37,7 @@
 ---------------------------------------------------------------------------*/
 html,body {
 	margin: 0;padding: 0;
-	height: 100%;
+	height: 100vh;
 	font-size: 14px;	/*基準となるフォントサイズ。下の方にある「画面幅900px以上」で基準を大きなサイズに再設定しています。*/
 }
 
@@ -112,7 +112,7 @@ a:hover {
 #container {
 	max-width: 1800px;		/*最大幅。これ以上広がらないように。*/
 	margin: 0 auto;
-	height: 100%;
+	height: 100vh;
 }
 
 
@@ -184,7 +184,7 @@ header address i {
 	position: fixed;overflow: auto;z-index: 100;
 	left: 0px;top: 0px;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	animation: opa1 1s both;
 	padding: 90px 50px;	/*上下、左右へのメニューブロック内の余白*/
 	background: #fff;	/*背景色*/
@@ -213,18 +213,17 @@ header address i {
 /*contentsブロック
 ---------------------------------------------------------------------------*/
 #contents {
-	height: 100%;
+	height: 100vh;
 	margin-right: 50px;			/*右側へ空けるボックスの外へのスペース*/
 	margin-left: 50px;			/*左側へ空けるボックスの外へのスペース*/
-	animation: opa1 2s both;	/*「2s」はcontentsを表示するまでの時間。ページを開いた瞬間から表示させておきたいならこの１行を削除。*/
+	min-height: 100vh;
 }
 
 /*トップページのコンテンツ*/
 .home #contents {
 	display: flex;				/*flexボックスを使う指定*/
 	flex-direction: column;		/*子要素を縦並びにする*/
-	justify-content: flex-end;	/*「お知らせ」を下に配置する*/
-	margin-right: 0px;
+	min-height: 100vh;
 }
 
 
@@ -232,8 +231,11 @@ header address i {
 ---------------------------------------------------------------------------*/
 /*mainブロックの設定*/
 main {
-	display: block;			/*IE対策*/
+	display: block;			
 	padding-top: 200px;		/*ブロックの上にとる余白。開いた時にロゴなどに重ならないようにする為。*/
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 /*トップページのmainブロック*/
@@ -293,6 +295,7 @@ footer {
 	font-size: 0.6rem;		/*文字サイズ。remの単位についてはテンプレート内の解説をお読み下さい。*/
 	padding: 20px;			/*ボックス内の余白*/
 	text-align: center;
+	margin-top: auto;
 }
 
 /*リンクテキスト*/
@@ -327,7 +330,6 @@ footer .pr {display: block;}
 	display: flex;			/*flexボックスを使う指定*/
 	flex-wrap: wrap;		/*折り返す指定*/
 	padding: 10px 20px;		/*上下、左右へのボックス内の余白*/
-	height: 10em;			/*ブロックの高さ。emは１文字分の事なのですが、他からの影響も関係するので必ずしも10文字分という事ではありません。*/
 	overflow: auto;			/*ブロックの高さを超える内容量になった場合に自動でスクロールバーを出す*/
 	margin-bottom: 20px;	/*下へのブロックの外への余白*/
 }
@@ -676,7 +678,7 @@ html, body {
 ---------------------------------------------------------------------------*/
 /*ヘッダーブロック*/
 header {
-	height: 100%;
+	height: 100vh;
 	background: linear-gradient(rgba(255,255,255,0.5) 750px, #c9eafd);/*背景グラデーション。255,255,255は白の事で0.5は色が50%出た状態。下側の色が#c9eafd。750pxはグラデーションを切り替えるポイント。*/
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.05);	/*ボックスの影。右へ、下へ、ぼかし幅の順。0,0,0は黒の事で0.05は色が5%でた状態。*/
 	width: 200px;		/*幅*/
