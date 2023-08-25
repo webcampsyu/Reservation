@@ -3,11 +3,6 @@
 <div class="simple-calendar">
   <div class="calendar-heading">
     <%= link_to "先週", calendar.url_for_previous_view %>
-    <% if calendar.number_of_weeks == 1 %>
-      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %></span>
-    <% else %>
-      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
-    <% end %>
     <%= link_to "来週", calendar.url_for_next_view %>
     <% reservations = Reservation.where(teacher_id: @teacher.id).reservations_after_three_month %>
   </div>
