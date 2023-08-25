@@ -15,7 +15,7 @@
         <%= form.datetime_field :end_time, class: 'form-control' %>
       </div>
       <%= form.hidden_field :teacher_id, value: current_teacher.id %>
-      <div class="submit">
+      <div class="submit btn">
         <%= form.submit value: '日程を登録する', class: 'btn btn-primary mx-auto d-block' %>
       </div>
     <% end %>

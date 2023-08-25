@@ -13,7 +13,9 @@
     </dd>
     <dt>予約を取り消す</dt>
     <dd>
-      <%= button_to '削除', user_teacher_reservation_path(@user.id, user_reservation.teacher_id, user_reservation.id), method: :delete, data: { confirm: "削除してもよろしいですか？", commit: "削除する", cancel: "やめる", title: "ご確認ください" } %>
+      <div class="btn">
+        <%= button_to '削除', user_teacher_reservation_path(@user.id, user_reservation.teacher_id, user_reservation.id), method: :delete, data: { confirm: "削除してもよろしいですか？", commit: "削除する", cancel: "やめる", title: "ご確認ください" } %>
+      </div>
     </dd>
     <% end %>
     <% if @user_reservations.blank? %> <!--blankメソッドはオプジェクトがからであるかどうかを確認する-->
@@ -24,6 +26,9 @@
   </dl>
 </section>
 
-<%= button_to destroy_user_session_path, method: :delete do %>
-  <span>ログアウト</span>
+<div class="btn">
+  <%= button_to destroy_user_session_path, method: :delete do %>
+  <a>ログアウト
+</div>
+
 <% end %>

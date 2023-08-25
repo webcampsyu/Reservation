@@ -17,7 +17,7 @@
       <%= form.hidden_field :teacher_id, value: current_teacher.id %>
       <%= form.hidden_field :start_time, value: @reservation.start_time %>
       <%= form.hidden_field :end_time, value: @reservation.end_time %>
-      <div class="submit">
+      <div class="submit btn">
         <%= form.submit value: '予約する', class: 'btn btn-primary mx-auto d-block' %>
       </div>
     <% end %>
