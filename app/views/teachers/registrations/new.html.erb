@@ -4,17 +4,17 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :氏名 %><br />
     <%= f.text_field :teacher_name, autocomplete: "名前" %>
   </div>
 
   <div class="field">
-    <%= f.label :area %><br />
+    <%= f.label :地域%><br />
     <%= f.text_field :teacher_area, autocomplete: "東京都" %>
   </div>
   
   <div class="field">
-    <%= f.label :image %>
+    <%= f.label :プロフィール画像 %>
     <%= f.file_field :teacher_img %>
   </div>
 
