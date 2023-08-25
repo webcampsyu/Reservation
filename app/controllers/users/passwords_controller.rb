@@ -2,8 +2,8 @@
 
 class Users::PasswordsController < Devise::PasswordsController
   
-  def after_update_path_for(_resource)
-    user_path(current_user)
+  def after_edit_path_for(_resource)
+    new_user_session
   end 
   
   # GET /resource/password/new
