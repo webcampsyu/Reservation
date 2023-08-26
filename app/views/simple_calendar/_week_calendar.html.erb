@@ -5,6 +5,8 @@
     <%= link_to "先週", calendar.url_for_previous_view %>
     <%= link_to "来週", calendar.url_for_next_view %>
     <% reservations = Reservation.where(teacher_id: @teacher.id).reservations_after_three_month %>
+    <% user_reservations = Reservation.where(teacher_id: @teacher.id).where.not(user_id: nil).reservations_after_three_month %>
+    <% teacher_reservations = Reservation.where(teacher_id: @teacher.id).where(user_id: nil).reservations_after_three_month %>
   </div>
 
   <table class="table table-striped">
@@ -36,9 +38,9 @@
             <td><%= time %></td>
             <% week.each do |day| %>
               <td>
-                <% if check_reservation(@reservations, day, time) %>
+                <% if check_reservation(user_reservations, day, time) %>
                   <%= '×' %>
-                <% else %>
+                <% elsif check_reservation(teacher_reservations, day, time) %>
                 <% if current_page?(action: "teacher_index") %>
                   <%= '○' %>
                 <% else %>
@@ -46,6 +48,8 @@
                     <%= '○' %>
                   <% end %>
                 <% end %>
+                <% else %>
+                  <%= '×' %>
                 <% end %>
               </td>
             <% end %>
