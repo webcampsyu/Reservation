@@ -8,7 +8,9 @@
       	<figure><%= image_tag teacher.teacher_img.url %></figure>
       	<div>
         	<h4><%= link_to teacher.teacher_name, user_teacher_reservations_path(current_user, teacher.id) %></h4>
-        	<p>ここに説明を書きます。サンプルテキスト。ここに説明を書きます。サンプルテキスト。ここに説明を書きます。サンプルテキスト。</p>
+        	<P>カリキュラム実施場所<br>
+        	  <%= teacher.teacher_address %>
+        	</P>
       	</div>
       </div>
     <% end %>
