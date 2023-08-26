@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   
-  before_action :authenticate_user!, except: [:teacher_index, :teacher_new, :teacher_create, :teacher_show, :teacher_destroy]
+  before_action :authenticate_user!, except: [:teacher_index, :teacher_new, :teacher_create, :teacher_show, :teacher_destroy, :all_day_new]
   
   def index
     @reservations = Reservation.all.where("start_time >= ?", Date.current).where("start_time < ?", Date.current >> 3).where(teacher_id: params[:teacher_id]).order(start_time: :desc)
@@ -34,6 +34,16 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_teacher_params)
   end
   
+  def all_day_new
+    @reservation = Reservation.new
+    @start_time = Time.zone.parse(params[:start_time])
+    @end_time = Time.zone.parse(params[:end_time])
+    message = Reservation.check_reservation_day(@start_time)
+    if !!message
+      redirect_to teacher_reservations_index_path(current_teacher.id), flash: { alert: message }
+    end 
+  end 
+  
   
   def show
     @reservation = Reservation.find(params[:id])
@@ -47,8 +57,10 @@ class ReservationsController < ApplicationController
   def teacher_create
     @reservation = Reservation.new(reservation_teacher_params)
     if @reservation.save
-      redirect_to "/teachers/#{@reservation.teacher_id}/reservations/#{@reservation.id}"
+      flash[:success]= "講師の予定を登録しました。"
+      redirect_to teacher_reservations_index_path(current_teacher.id)
     else
+      flash.now[:alert] = "予約が登録できませんでした。"
       render :teacher_new
     end
   end 
@@ -62,8 +74,9 @@ class ReservationsController < ApplicationController
                                                                                  #reservation: @reservationはreservationというパラメータ名で@reservationインスタンス変数をメール送信メソッドに渡す。
                                                                                  #.reservation_emailはメール送信のメソッド。UserMailerクラス内で定義されたメソッド
                                                                                  #.deliver_laterはメールを非同期で送信するためのメソッド　
-      redirect_to reservation_path @reservation.id
+      redirect_to user_teacher_reservation_path(@reservation.user_id, @reservation.teacher_id, @reservation.id)
     else
+      flash.now[:alert] = "予約が登録できません。"
       render :new
     end 
   end 
@@ -78,6 +91,7 @@ class ReservationsController < ApplicationController
       flash[:success] = "予約を削除しました。"
       redirect_to user_path(current_user.id)
     else 
+      flash.now[:alert] = "予約が削除できませんでした。"
       render "users/show"
     end 
   end 
@@ -88,6 +102,7 @@ class ReservationsController < ApplicationController
       flash[:success] = "講師の予定を削除しました。"
       redirect_to teacher_reservations_index_path(current_teacher.id)
     else 
+      flash.now[:alert] = "講師の予定が削除できませんでした。"
       render teacher_index_path
     end 
   end 

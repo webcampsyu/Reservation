@@ -28,7 +28,11 @@
               <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
                 <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
               <% else %>
-                <% passed_block.call day, sorted_events.fetch(day, []) %>
+                <% if current_page?(action: "teacher_index") %>
+                  <%= link_to teacher_reservations_all_day_new_path(current_teacher, start_time: all_day_start_time(day), end_time: all_day_end_time(day)) do %>
+                    <% passed_block.call day, sorted_events.fetch(day, []) %>
+                  <% end %>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>

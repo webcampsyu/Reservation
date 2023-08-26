@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get '/reservations/index', to: 'reservations#teacher_index'
     post '/reservations/index', to: 'reservations#teacher_create'
     post '/reservatins/new', to: 'reservations#teacher_new'
+    get '/reservations/all_day_new', to: 'reservations#all_day_new'
     get '/reservations/:id', to: 'reservations#teacher_show'
   end
   delete '/reservations/:id', to: 'reservations#teacher_destroy', as: :destroy_reservation
