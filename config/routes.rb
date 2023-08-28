@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     post '/reservatins/new', to: 'reservations#teacher_new'
     get '/reservations/all_day_new', to: 'reservations#all_day_new'
     get '/reservations/:id', to: 'reservations#teacher_show'
+    delete '/temp_reservation/:id', to: 'temp_reservations#teacher_destroy', as: :destroy_temp_reservation
   end
   delete '/reservations/:id', to: 'reservations#teacher_destroy', as: :destroy_reservation
   resources :users do

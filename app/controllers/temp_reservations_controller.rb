@@ -28,6 +28,37 @@ class TempReservationsController < ApplicationController
     end 
   end 
   
+  def destroy
+    @temp_reservation = TempReservation.find(params[:id])
+    @user = User.find(@temp_reservation.user_id)
+    @teacher = Teacher.find(@temp_reservation.teacher_id)
+    @start_time = @temp_reservation.start_time
+    if @temp_reservation.destroy
+      UserMailer.with(user: @user, teacher: @teacher, start_time: @start_time).reservation_delete_email.deliver_later
+      flash[:success] = "仮予約を削除しました。"
+      redirect_to user_path(@user.id)
+    else 
+      flash.now[:alert] = "仮予約が削除できませんでした。"
+      render "users/show"
+    end 
+  end 
+  
+  def teacher_destroy
+    @temp_reservation = TempReservation.find(params[:id])
+    @user = User.find(@temp_reservation.user_id)
+    @teacher = Teacher.find(@temp_reservation.teacher_id)
+    @start_time = @temp_reservation.start_time
+    if @temp_reservation.destroy
+      UserMialer.with(user: @user, teacher: @teacher, start_time: @start_time).reservation_delete_email.deliver_later
+      flash[:success] = "仮予約を削除しました。"
+      redirect_to teacher_path(@teacher.id)
+    else 
+      flash.now[:alert] = "仮予約が削除できませんでした。"
+      render "teacher/show"
+    end 
+  end 
+  
+  
   private
   def temp_reservation_params
     params.require(:temp_reservation).permit(:user_id, :teacher_id, :start_time, :end_time, :address_select)
