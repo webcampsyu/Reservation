@@ -12,7 +12,7 @@
     <dd>
       <%= check_teacher(temp_reservation) %>
     </dd>
-    <dt>カリキュラム実施場所</dt>
+    <dt>実施場所</dt>
     <dd>
       <% if temp_reservation.address_select? %>
         <%= teacher_address(temp_reservation) %>
@@ -45,7 +45,7 @@
     <dd>
       <%= check_teacher(user_reservation) %>
     </dd>
-    <dt>カリキュラム実施場所</dt>
+    <dt>実施場所</dt>
     <dd>
       <% if user_reservation.address_select? %>
         <%= teacher_address(user_reservation) %>

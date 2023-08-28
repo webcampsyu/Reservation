@@ -1,7 +1,34 @@
 <section class="box1">
 
   <h2><%= @teacher.teacher_name %>さんのマイページ</h2>
+  <h3>仮予約一覧</h3>
+  <dl class="show">
+    <% @temp_reservations.each do |temp_reservation| %>
+      <dt>開始時間</dt>
+      <dd>
+        <%= l temp_reservation.start_time, format: :short %>
+      </dd>
+      <dt>生徒名</dt>
+      <dd>
+        <%= check_user(temp_reservation) %>
+      </dd>
+      <dt>実施場所</dt>
+      <dd>
+        <% if temp_reservation.address_select? %>
+          <%= current_teacher.teacher_address %>
+        <% else %>
+          <%= user_address(temp_reservation) %>
+        <% end %>
+      </dd>
+    <% end %>
+    <% if @temp_reservations.blank? %>
+      <dt>
+        <dd>予約はありません。</dd>
+      </dt>
+    <% end %>
+  </dl>
   
+  <h3>予約一覧</h3>
   <dl class="show">
     <%= teacher_reservations.each do |teacher_reservation| %>
       <dt>開始時間</dt>
@@ -12,7 +39,7 @@
       <dd>
         <%= check_user(teacher_reservation) %>
       </dd>
-      <dt>カリキュラム実施場所</dt>
+      <dt>実施場所</dt>
       <dd>
         <% if teacher_reservation.address_select? %>
           <%= current_teacher.teacher_address %>
