@@ -2,7 +2,7 @@
 
 class TeacherMailer < ApplicationMailer
   
-  default from: 'no-reply@spaschool.jp'
+  default from: '"事務局" <no-reply@spaschool.jp>'
   
   def reservation_delete_email
     @user = params[:user]

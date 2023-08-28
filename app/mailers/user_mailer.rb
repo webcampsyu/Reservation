@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'no-reply@spaschool.jp'
+  default from: '"事務局" <no-reply@spaschool.jp>'
 
   def reservation_email
     @reservation = params[:reservation]
