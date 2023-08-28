@@ -20,6 +20,12 @@
           <%= user_address(temp_reservation) %>
         <% end %>
       </dd>
+      <dt>仮予約を確定させる</dt>
+      <dd>
+        <div class="btn">
+          <%= link_to "確定", new_user_teacher_reservation_path(User.find(temp_reservation.user_id).id, @teacher, temp_reservation_id: temp_reservation.id, start_time: temp_reservation.start_time, end_time: temp_reservation.end_time, address_select: temp_reservation.address_select) %>
+        </div>
+      </dd>
     <% end %>
     <% if @temp_reservations.blank? %>
       <dt>
