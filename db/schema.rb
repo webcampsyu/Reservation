@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2023_08_28_051954) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "address_select", default: true, null: false
-    t.bigint "temp_reservation_id", null: false
+    t.bigint "temp_reservation_id"
   end
 
   create_table "teachers", force: :cascade do |t|

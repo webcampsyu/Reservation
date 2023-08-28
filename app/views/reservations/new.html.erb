@@ -19,6 +19,7 @@
       </div>
         <%= form.hidden_field :user_id, value: @user.id %>
         <%= form.hidden_field :teacher_id, value: @teacher.id %>
+        <%= form.hidden_field :temp_reservation_id, value: @temp_reservation.id %>
         <%= form.hidden_field :start_time, value: @start_time %>
         <%= form.hidden_field :end_time, value: @end_time %>
         <%= form.hidden_field :address_select, value: @address_select %>

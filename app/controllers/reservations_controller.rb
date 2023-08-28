@@ -22,6 +22,7 @@ class ReservationsController < ApplicationController
     @user = User.find(params[:id])
     @teacher = Teacher.find(params[:teacher_id])
     @reservation = Reservation.new
+    @temp_reservation = TempReservation.find(params[:temp_reservation_id])
     @start_time = Time.zone.parse(params[:start_time])
     @end_time = Time.zone.parse(params[:end_time])
     @address_select = params[:address_select]
@@ -57,6 +58,8 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
+      @temp_reservation = TempReservation.find(@reservation.temp_reservation_id)
+      @temp_reservation.destroy
       UserMailer.with(reservation: @reservation).reservation_email.deliver_later #メール痩身をするための処理
                                                                                  #UserMailerはメール送信用のメーラークラス
                                                                                  #reservation: @reservationはreservationというパラメータ名で@reservationインスタンス変数をメール送信メソッドに渡す。
@@ -99,7 +102,7 @@ class ReservationsController < ApplicationController
   
   private
   def reservation_params
-    params.require(:reservation).permit(:user_id, :start_time, :end_time, :address_select)
+    params.require(:reservation).permit(:user_id, :teacher_id, :temp_reservation_id, :start_time, :end_time, :address_select)
   end 
   
   def reservation_teacher_params
