@@ -1,0 +1,8 @@
+<%= @teacher.teacher_name %>さん、仮予約が登録されました。
+
+氏名 <%= @user.user_name %>様
+開始時間 <%= l @temp_reservation.start_time, format: :short %>
+
+<%= link_to "予約を確定させる", new_user_teacher_reservation_url(@user, @teacher, temp_reservation_id: @temp_reservation.id, start_time: @temp_reservation.start_time, end_time: @temp_reservation.end_time, address_select: @temp_reservation.address_select) %>
+
+よろしくお願いします。

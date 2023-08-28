@@ -18,4 +18,6 @@ class TeacherMailer < ApplicationMailer
     mail(to: @teacher.email, subject: '仮予約が登録されました')
   end 
   
+  def 
+  
 end

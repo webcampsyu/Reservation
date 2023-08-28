@@ -23,7 +23,7 @@ class TempReservationsController < ApplicationController
   def create
     @temp_reservation = TempReservation.new(temp_reservation_params)
     if @temp_reservation.save
-      UserMailer.with(temp_reservation: @temp_reservation).temp_reservation_email.deliver_later
+      TeacherMailer.with(temp_reservation: @temp_reservation).temp_reservation_email.deliver_later
       redirect_to user_temp_reservation_path(@temp_reservation.user_id, @temp_reservation.teacher_id, @temp_reservation.id)
     else 
       flash.now[:alert] = "予約が登録できませんでした。"
@@ -37,7 +37,7 @@ class TempReservationsController < ApplicationController
     @teacher = Teacher.find(@temp_reservation.teacher_id)
     @start_time = @temp_reservation.start_time
     if @temp_reservation.destroy
-      UserMailer.with(user: @user, teacher: @teacher, start_time: @start_time).reservation_delete_email.deliver_later
+      TeacherMailer.with(user: @user, teacher: @teacher, start_time: @start_time).temp_reservation_delete_email.deliver_later
       flash[:success] = "仮予約を削除しました。"
       redirect_to user_path(@user.id)
     else 
@@ -52,7 +52,7 @@ class TempReservationsController < ApplicationController
     @teacher = Teacher.find(@temp_reservation.teacher_id)
     @start_time = @temp_reservation.start_time
     if @temp_reservation.destroy
-      UserMialer.with(user: @user, teacher: @teacher, start_time: @start_time).reservation_delete_email.deliver_later
+      UserMialer.with(user: @user, teacher: @teacher, start_time: @start_time).temp_reservation_delete_email.deliver_later
       flash[:success] = "仮予約を削除しました。"
       redirect_to teacher_path(@teacher.id)
     else 
