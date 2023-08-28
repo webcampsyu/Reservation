@@ -1,8 +1,8 @@
-<%= @teacher.teacher_name %>さん、仮予約が登録されました。
+<p><%= @teacher.teacher_name %>さん、仮予約が登録されました。</p>
 
-氏名 <%= @user.user_name %>様
-開始時間 <%= l @temp_reservation.start_time, format: :short %>
+<p>氏名 <%= @user.user_name %>様</p>
+<p>開始時間 <%= l @temp_reservation.start_time, format: :short %></p>
 
-<%= link_to "予約を確定させる", new_user_teacher_reservation_url(@user, @teacher, temp_reservation_id: @temp_reservation.id, start_time: @temp_reservation.start_time, end_time: @temp_reservation.end_time, address_select: @temp_reservation.address_select) %>
+<p><%= link_to "予約を確定させる", new_user_teacher_reservation_url(@user, @teacher, temp_reservation_id: @temp_reservation.id, start_time: @temp_reservation.start_time, end_time: @temp_reservation.end_time, address_select: @temp_reservation.address_select) %></p>
 
-よろしくお願いします。
+<p>よろしくお願いします。</p>
