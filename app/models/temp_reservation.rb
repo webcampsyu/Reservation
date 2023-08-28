@@ -1,0 +1,2 @@
+class TempReservation < ApplicationRecord
+end
