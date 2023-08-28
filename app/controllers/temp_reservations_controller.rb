@@ -10,7 +10,7 @@ class TempReservationsController < ApplicationController
     @teacher_id = params[:teacher_id]
     @start_time = Time.zone.parse(params[:day] + "" + params[:time] + "" + "JST")
     @end_time = @start_time + 90.minutes
-    message = TempReservation.check_reservation_day(@start_time)
+    message = TempReservation.check_reservation_day(@user.id, @start_time)
     if !!message
       redirect_to user_teacher_reservations_path(@user.id, @teacher.id), flash: { alert: message }
     end 
