@@ -20,7 +20,7 @@ class TempReservationsController < ApplicationController
   def create
     @temp_reservation = TempReservation.new(temp_reservation_params)
     if @temp_reservation.save
-      UserMailer.with(temp_reservation: @temp_reservation).reservation_email.deliver_later
+      UserMailer.with(temp_reservation: @temp_reservation).temp_reservation_email.deliver_later
       redirect_to user_temp_reservation_path(@temp_reservation.user_id, @temp_reservation.teacher_id, @temp_reservation.id)
     else 
       flash.now[:alert] = "予約が登録できませんでした。"

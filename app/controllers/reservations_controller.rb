@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   
-  before_action :authenticate_user!, except: [:teacher_index, :teacher_new, :teacher_create, :teacher_show, :teacher_destroy, :all_day_new]
+  before_action :authenticate_user!, except: [:teacher_index, :new, :teacher_new, :teacher_create, :create, :teacher_show, :teacher_destroy, :all_day_new]
+  before_action :authenticate_teacher!, only: [:new, :create]
   
   def index
     @reservations = Reservation.all.where("start_time >= ?", Date.current).where("start_time < ?", Date.current >> 3).where(teacher_id: params[:teacher_id]).order(start_time: :desc)
@@ -18,16 +19,12 @@ class ReservationsController < ApplicationController
   end
   
   def new
-    @user = current_user
+    @user = User.find(params[:id])
     @teacher = Teacher.find(params[:teacher_id])
     @reservation = Reservation.new
-    @teacher_id = params[:teacher_id]
-    @start_time = Time.zone.parse(params[:day] + " " + params[:time] + " " + "JST") # @dayと@timeを結合して、JST（日本標準時）として日時を作成
-    @end_time = @start_time + 90.minutes
-    message = Reservation.check_reservation_day(@start_time) #予約データのチェック
-    if !!message #messageが真の場合、条件成立
-      redirect_to user_teacher_reservations_path(@user.id, @teacher.id), flash: { alert: message }
-    end
+    @start_time = Time.zone.parse(params[:start_time])
+    @end_time = Time.zone.parse(params[:end_time])
+    @address_select = params[:address_select]
   end 
   
   def teacher_new
@@ -74,7 +71,7 @@ class ReservationsController < ApplicationController
                                                                                  #reservation: @reservationはreservationというパラメータ名で@reservationインスタンス変数をメール送信メソッドに渡す。
                                                                                  #.reservation_emailはメール送信のメソッド。UserMailerクラス内で定義されたメソッド
                                                                                  #.deliver_laterはメールを非同期で送信するためのメソッド　
-      redirect_to user_teacher_reservation_path(@reservation.user_id, @reservation.teacher_id, @reservation.id)
+      redirect_to teacher_path(@reservation.teacher_id)
     else
       flash.now[:alert] = "予約が登録できません。"
       render :new
