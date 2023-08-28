@@ -11,6 +11,14 @@
     <dd>
       <%= check_teacher(user_reservation) %>
     </dd>
+    <dt>カリキュラム実施場所</dt>
+    <dd>
+      <% if user_reservation.address_select? %>
+        <%= teacher_address(user_reservation) %>
+      <% else %>
+        <%= current_user.user_address %>
+      <% end %>
+    </dd>
     <dt>予約を取り消す</dt>
     <dd>
       <div class="btn">

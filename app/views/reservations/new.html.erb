@@ -17,6 +17,10 @@
         <%= form.label :time, '終了時間' %>
         <%= l @end_time, format: :short %>
       </div>
+      <div class="time form-group">
+        <%= form.label :time, 'カリキュラム実施場所' %>
+        <%= form.select :address_select, [["講師のサロンを利用する", true], ["自分の選択した場所を利用する", false]], include_blank: "選択してください", class: 'form-control' %>
+      </div>
       <%= form.hidden_field :user_id, value: current_user.id %>
       <%= form.hidden_field :teacher_id, value: @teacher_id %>
       <%= form.hidden_field :start_time, value: @start_time %>

@@ -13,7 +13,9 @@
     <thead>
       <tr>
         <th>時間</th>
-        <% date_range.slice(0, 7).each do |day| %>
+        <% date_range.slice(0, 7).each do |day| %> <!-- date_rangeは処理する対象の配列
+                                                        .slice(0.7)は配列の最初から７つの要素を取り出すメソッド。
+                                                        .sliceメソッドは指定した範囲の要素を切り出すために使用-->
           <th><%= t('date.abbr_day_names')[day.wday] %></th>
         <% end %>
       </tr>
@@ -24,14 +26,23 @@
         <tr>
           <td></td>
           <% week.each do |day| %>
-            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
-              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
-                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %> <!-- content_tagで<td>要素を生成。
+                                                                                calendar.td_classes_for(day)は特定の日付'day'に対するクラスを生成するメソッドを呼び出す。-->
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %> <!-- Hamlテンプレートエンジンが使用可能な場合に特定の処理を行う。
+                                                                                                           Hamlが定義されたいて、block_is_haml?メソッドが使用可能で、passed_blockブロックがHaml形式である場合、真となる。-->
+              <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %> <!-- capture_hamlはHaml形式のブロックをキャプチャするためのメソッド。
+                                                                                        dayとsorted_events.fetch(day, [])を引数として渡し、&passed_blockブロックを渡す。-->
               <% else %>
                 <% if current_page?(action: "teacher_index") %>
                   <%= link_to teacher_reservations_all_day_new_path(current_teacher, start_time: all_day_start_time(day), end_time: all_day_end_time(day)) do %>
-                    <% passed_block.call day, sorted_events.fetch(day, []) %>
+                    <% passed_block.call day, sorted_events.fetch(day, []) %> <!-- passed_blockというProcオブジェクトを呼び出し、callメソッドを使用してブロック内を処理。
+                                                                                   Procはブロックをオブジェクトとして扱うためのクラス（ブロックとはコードの一部を囲む{}やdo~endといった構文で表現され、主にメソッドを引数として渡すことで、そのメソッド内で特定の処理を実行するためのもの。
+                                                                                   dayはブロック内で処理するための日付情報
+                                                                                   sorted_events.fetch(day, [])はsorted_eventsというハッシュから指定されたdayに対応する値を取得。
+                                                                                   fetchメソッドは指定されたキーが存在しない場合にデフォルト値を返す。（ここでは[])。-->
                   <% end %>
+                  <% else %>
+                    <% passed_block.call day, sorted_events.fetch(day, []) %>
                 <% end %>
               <% end %>
             <% end %>

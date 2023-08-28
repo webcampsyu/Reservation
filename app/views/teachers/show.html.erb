@@ -12,6 +12,14 @@
       <dd>
         <%= check_user(teacher_reservation) %>
       </dd>
+      <dt>カリキュラム実施場所</dt>
+      <dd>
+        <% if teacher_reservation.address_select? %>
+          <%= current_teacher.teacher_address %>
+        <% else %>
+          <%= user_address(teacher_reservation) %>
+        <% end %>
+      </dd>
     <% end %>
     <% if @teacher_reservations.blank? %> <!--blank?メソッド：オプジェクトが空であるかどうかを判定-->
       <dt>
