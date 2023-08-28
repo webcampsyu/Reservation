@@ -2,6 +2,7 @@ class TempReservation < ApplicationRecord
   
   belongs_to :user, optional: true #optional: trueはbelongs_toの外部キーのnilを許可する
   belongs_to :teacher
+  has_one :reservation
   
   def self.check_reservation_day(start_time)
     if self_time < Date.current #Date.currentはapplication.rbのタイムゾーンを使って、現在の日付を取得する
