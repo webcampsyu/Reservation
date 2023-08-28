@@ -19,8 +19,20 @@
       <div id="container">
       
         <header>
-        
-          <h1 id="logo"><%= image_tag 'logo.png', alt:'ロゴ画像' %></h1>
+          
+          <% if teacher_signed_in? %>
+            <%= link_to teacher_path(current_teacher) do %>
+              <h1 id ="logo"><%= image_tag 'logo.png', alt:'ロゴ画像' %></h1>
+            <% end %>
+          <% elsif user_signed_in? %>
+            <%= link_to user_path(current_user) do %>
+              <h1 id="logo"><%= image_tag 'logo.png', alt:'ロゴ画像' %></h1>
+            <% end %>
+          <% else %>
+            <%= link_to new_user_session_path do %>
+              <h1 id="logo"><%= image_tag 'logo.png', alt:'ロゴ画像' %></h1>
+            <% end %>
+          <% end %>
           
           <!--メインメニュー-->
           <nav id="menubar">
@@ -33,7 +45,6 @@
               <ul>
                 <li><%= link_to "マイページ", user_path(:id) %></li>
                 <li><%= link_to "カリキュラム予約", user_path(:id) %></li>
-                <li><%= link_to "e-ラーニング", user_path(:id) %></li>
               </ul>
             <% end %>
           
