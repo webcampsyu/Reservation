@@ -1,0 +1,2 @@
+class TempReservationsController < ApplicationController
+end
