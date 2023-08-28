@@ -26,8 +26,8 @@
           <%= link_to "確定", new_user_teacher_reservation_path(User.find(temp_reservation.user_id).id, @teacher, temp_reservation_id: temp_reservation.id, start_time: temp_reservation.start_time, end_time: temp_reservation.end_time, address_select: temp_reservation.address_select) %>
         </div>
       </dd>
-      <dt>仮予約を取り消す</dt>
-      <dd>
+     <dt class="line">仮予約を取り消す</dt>
+     <dd class="line">
         <div class="btn">
           <%= button_to "削除", teacher_destroy_temp_reservation_path(@teacher, temp_reservation), method: :delete, data: { confirm: "削除してよろしいですか？", commit: "削除する", cancel: "やめる", title: "ご確認ください" } %>
         </div>
@@ -51,8 +51,8 @@
       <dd>
         <%= check_user(teacher_reservation) %>
       </dd>
-      <dt>実施場所</dt>
-      <dd>
+      <dt class="line">実施場所</dt>
+      <dd class="line">
         <% if teacher_reservation.address_select? %>
           <%= current_teacher.teacher_address %>
         <% else %>
