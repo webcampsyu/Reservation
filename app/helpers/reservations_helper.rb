@@ -38,17 +38,30 @@ module ReservationsHelper
   def check_reservation(reservations, day, time) #指定された日付と時間に対する予約の存在を確認
     result = false
     reservations_count = reservations.count #渡された予約データの要素数を代入
+    select_time = Time.zone.parse(day.to_s + "" + time + "" + "JST")
+    later_time = select_time + 89.minutes
     if reservations_count > 1
       reservations.each do |reservation|
-        result = reservation[:start_time] <= Time.zone.parse(day.to_s + " " + time + " " + "JST") && Time.zone.parse(day.to_s + " " + time + " " + "JST") < reservation[:end_time] #時間の範囲をチェックする。論理演算子<=や&&を使用して、予約開始時刻よりも大きくかつ予約の終了時刻よりも小さい場合resultにtrueが代入される。それ以外はfalseが代入される
+        result = reservation[:start_time] <= select_time && select_time < reservation [:end_time]
         return result if result
       end
     elsif reservations_count == 1
-      result = reservations[0][:start_time] <= Time.zone.parse(day.to_s + " " + time + " " + "JST") && Time.zone.parse(day.to_s + " " + time + " " + "JST") < reservations[0][:end_time]
+      result = reservations[0][:start_time] <= select_time && select_time < reservation [:end_time]
       return result if result
     end
-    return result
+    return result if result
   end
+  
+  if reservations_count > 1
+    reservations.each do |reservation|
+      result = reservation[:start_time] <= later_time && later_time < reservation[:end_time]
+      return result if result
+    end 
+  elsif reservations_count == 1
+    result = reservations[0][:start_time] <= later_time && later_time < reservation[0][:end_time]
+    return result if result
+  end 
+  
   
   def address(address_select)
     if address_select
