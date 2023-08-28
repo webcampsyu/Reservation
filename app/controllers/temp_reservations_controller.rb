@@ -1,5 +1,8 @@
 class TempReservationsController < ApplicationController
   
+  before_action :authenticate_teacher!, only: [:teacher_destroy]
+  before_action :authenticate_user!, only: [:teacher_destroy]
+  
   def new
     @user = current_user
     @teacher = Teacher.find(params[:teacher_id])
