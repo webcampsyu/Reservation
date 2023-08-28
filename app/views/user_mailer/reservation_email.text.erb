@@ -2,5 +2,6 @@
 
 氏名 <%= @user.user_name %>　様
 開始時間 <%= l @reservation.start_time, format: :short %>
+実施場所 <%= address_each(@reservation) %>
 
 よろしくお願いします。

@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
     @reservation = params[:reservation]
     @user = User.find(@reservation.user_id)
     @teacher = Teacher.find(@reservation.teacher_id)
-    mail(to: @teacher.email, subject: '新規予約が登録されました')
+    mail(to: @user.email, subject: '予約が確定しました。')
   end
   
   def reservation_delete_email
