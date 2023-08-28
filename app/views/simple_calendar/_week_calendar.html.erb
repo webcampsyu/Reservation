@@ -60,7 +60,7 @@
                   <% this_reservation = Reservation.find_by('start_time <= ? and end_time > ?', Time.zone.parse(day.to_s + "" + time + "" + "JST"), Time.zone.parse(day.to_s + "" + time + "" + "JST")) %>
                   <%= button_to '○', destroy_reservation_path(this_reservation.id), method: :delete %>
                 <% else %>
-                  <%= link_to new_reservation_path(day: day, time: time) do %>
+                  <%= link_to new_user_teacher_temp_reservation_path(day: day, time: time) do %>
                     <%= '○' %>
                   <% end %>
                 <% end %>
