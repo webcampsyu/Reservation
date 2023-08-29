@@ -6,10 +6,6 @@
     <div class="col-12 mt-3 content">
       <%= form_with model: @temp_reservation, url: user_teacher_temp_reservations_path, local: true, class: 'form' do |form| %>
         <div class="time form-group">
-          <%= form.label :time, '講師ID' %>
-          <%= form.text_field :teacher_id, class: 'form-control', value: @teacher_id, readonly: true %>
-        </div>
-        <div class="time form-group">
           <%= form.label :time, '開始時間' %>
           <%= l @start_time, format: :short %>
         </div>
