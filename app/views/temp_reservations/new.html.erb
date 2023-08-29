@@ -15,7 +15,7 @@
         </div>
         <div class="time form-group">
           <%= form.label :time, 'カリキュラム実施場所' %>
-          <%= form.select :address_select, [["講師のサロンを利用する", true], ["自分の選択した場所を利用する", false]], { include_blank: true, selected: "true" }, class: 'form-control' %>
+          <%= form.select :address_select, [["講師のサロンを利用する", true], ["自分の選択した場所を利用する", false]], class: 'form-control' %>
         </div>
         <%= form.hidden_field :user_id, value: current_user.id %>
         <%= form.hidden_field :teacher_id, value: @teacher_id %>
