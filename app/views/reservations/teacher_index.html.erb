@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-center">
-      <h1><%= @teacher.teacher_name %>先生予約画面</h1>
-      <p>3ヶ月先まで予約することができます。</p>
+      <h1><%= @teacher.teacher_name %>日程管理画面</h1>
+      <p>3ヶ月先まで日程管理することができます。</p>
     </div>
     <div class="col-12 mt-3 content">
     <%= form_with model: @reservation, url: teacher_reservations_new_path, local: true, class: 'form' do |form| %>
