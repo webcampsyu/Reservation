@@ -2,9 +2,9 @@
   <html lang="ja">
     <head>
       <meta charset="UTF-8">
-      <title>予約サイト</title>
+      <title>パーソナルトレーナー予約サイト</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="description" content="予約サイトです。">
+      <meta name="description" content="筋トレ、ボディメイクをお手伝いするパーソナルトレーナの予約サイトです。">
       <%= csrf_meta_tags %>
       <%= csp_meta_tag %>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.5.4/vegas.min.css">
@@ -38,13 +38,13 @@
           <nav id="menubar">
             <% if teacher_signed_in? %>
               <ul>
-                <li><%= link_to "講師マイページ", teacher_path(:id) %></li>
+                <li><%= link_to "トレーナーマイページ", teacher_path(:id) %></li>
                 <li><%= link_to "日程管理", teacher_reservations_index_path(:id) %></li>
               </ul>
             <% else %>
               <ul>
                 <li><%= link_to "マイページ", user_path(:id) %></li>
-                <li><%= link_to "カリキュラム予約", user_path(:id) %></li>
+                <li><%= link_to "トレーニング予約", user_path(:id) %></li>
               </ul>
             <% end %>
           
