@@ -4,6 +4,8 @@ class Reservation < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :temp_reservation, optional: true
   
+  validates :teacher_id, :start_time, :end_time, :address_select, presence: true
+  
   def self.reservations_after_three_month
     # 今日から3ヶ月先までのデータを取得
     reservations = Reservation.all.where("start_time >= ?", Date.current).where("start_time < ?", Date.current >> 3).order(start_time: :desc)
@@ -13,6 +15,7 @@ class Reservation < ApplicationRecord
     reservations.each do |reservation|
       reservations_hash = {}
       reservations_hash.merge!(start_time: reservation.start_time, end_time: reservation.end_time)
+      reservation_data.push(reservations_hash)
     end
     reservation_data
   end
