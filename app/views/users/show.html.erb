@@ -1,31 +1,30 @@
 <section class="box1">
-
-<h2><%= @user.user_name %>さんのマイページ</h2>
-<h3>仮予約一覧</h3>
+  <h2><%= @user.user_name %>さんのマイページ</h2>
+  <h3>仮予約一覧</h3>
   <dl class="show">
     <% @temp_reservations.each do |temp_reservation| %>
-    <dt>開始時間</dt>
-    <dd>
-      <%= l temp_reservation.start_time, format: :short %>
-    </dd>
-    <dt>トレーナーID</dt>
-    <dd>
-      <%= check_teacher(temp_reservation) %>
-    </dd>
-    <dt>実施場所</dt>
-    <dd>
-      <% if temp_reservation.address_select? %>
-        <%= teacher_address(temp_reservation) %>
-      <% else %>
-        <%= current_user.user_address %>
-      <% end %>
-    </dd>
-    <dt class="line">予約を取り消す</dt>
-    <dd class="line">
-      <div class="btn">
-        <%= button_to "削除", user_teacher_temp_reservation_path(@user.id, temp_reservation.teacher_id, temp_reservation.id), method: :delete, data: { confirm: "削除してよろしいですか？", commit : "削除する", cancel: "やめる", title: "ご確認ください" } %>
-      </div>
-    </dd>
+      <dt>開始時間</dt>
+      <dd>
+        <%= l temp_reservation.start_time, format: :short %>
+      </dd>
+      <dt>トレーナーID</dt>
+      <dd>
+        <%= check_teacher(temp_reservation) %>
+      </dd>
+      <dt>実施場所</dt>
+      <dd>
+        <% if temp_reservation.address_select? %>
+          <%= teacher_address(temp_reservation) %>
+        <% else %>
+          <%= current_user.user_address %>
+        <% end %>
+      </dd>
+      <dt class="line">予約を取り消す</dt>
+      <dd class="line">
+        <div class="btn">
+          <%= button_to "削除", user_teacher_temp_reservation_path(@user.id, temp_reservation.teacher_id, temp_reservation.id), method: :delete, data: { confirm: "削除してよろしいですか？", commit: "削除する", cancel: "やめる", title: "ご確認ください" } %>
+        </div>
+      </dd>
     <% end %>
     <% if @temp_reservations.blank? %>
       <dt>
@@ -33,34 +32,34 @@
       </dt>
     <% end %>
   </dl>
-  
+
   <h3>予約一覧</h3>
   <dl class="show">
     <% @user_reservations.each do |user_reservation| %>
-    <dt>開始時間</dt>
-    <dd>
-      <%= l user_reservation.start_time, format: :short %>
-    </dd>
-    <dt>トレーナー</dt>
-    <dd>
-      <%= check_teacher(user_reservation) %>
-    </dd>
-    <dt>実施場所</dt>
-    <dd>
-      <% if user_reservation.address_select? %>
-        <%= teacher_address(user_reservation) %>
-      <% else %>
-        <%= current_user.user_address %>
-      <% end %>
-    </dd>
-    <dt>予約を取り消す</dt>
-    <dd>
-      <div class="btn">
-        <%= button_to '削除', user_teacher_reservation_path(@user.id, user_reservation.teacher_id, user_reservation.id), method: :delete, data: { confirm: "削除してもよろしいですか？", commit: "削除する", cancel: "やめる", title: "ご確認ください" } %>
-      </div>
-    </dd>
+      <dt>開始時間</dt>
+      <dd>
+        <%= l user_reservation.start_time, format: :short %>
+      </dd>
+      <dt>トレーナー</dt>
+      <dd>
+        <%= check_teacher(user_reservation) %>
+      </dd>
+      <dt>実施場所</dt>
+      <dd>
+        <% if user_reservation.address_select? %>
+          <%= teacher_address(user_reservation) %>
+        <% else %>
+          <%= current_user.user_address %>
+        <% end %>
+      </dd>
+      <dt>予約を取り消す</dt>
+      <dd>
+        <div class="btn">
+          <%= button_to '削除', user_teacher_reservation_path(@user.id, user_reservation.teacher_id, user_reservation.id), method: :delete, data: { confirm: "削除してもよろしいですか？", commit: "削除する", cancel: "やめる", title: "ご確認ください" } %>
+        </div>
+      </dd>
     <% end %>
-    <% if @user_reservations.blank? %> <!--blankメソッドはオプジェクトがからであるかどうかを確認する-->
+    <% if @user_reservations.blank? %>
       <dt>
         <dd>予約はありません。</dd>
       </dt>
@@ -70,7 +69,6 @@
 
 <div class="btn">
   <%= button_to destroy_user_session_path, method: :delete do %>
-  <a>ログアウト
+    ログアウト
+  <% end %>
 </div>
-
-<% end %>
