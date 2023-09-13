@@ -10,6 +10,12 @@ class Users::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(_resource)
     new_user_session_path
   end
+  
+  def guest_sing_in
+    user = User.guest
+    sign_in user
+    redirect_to user_path(id: user.id), notice: 'ゲストユーザーとしてログインしました。'
+  end 
 
   # GET /resource/sign_in
   # def new
