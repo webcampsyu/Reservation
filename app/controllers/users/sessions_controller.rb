@@ -9,11 +9,11 @@ class Users::SessionsController < Devise::SessionsController
 
   def after_sign_out_path_for(_resource)
     new_user_session_path
-  end
+  end 
   
-  def guest_sing_in
+  def guest_sign_in
     user = User.guest
-    sign_in user
+    sign_in user # deviseのメソッドでこのユーザーをログインさせる
     redirect_to user_path(id: user.id), notice: 'ゲストユーザーとしてログインしました。'
   end 
 

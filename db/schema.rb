@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_29_032426) do
+ActiveRecord::Schema.define(version: 2023_09_18_204130) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -82,10 +82,7 @@ ActiveRecord::Schema.define(version: 2023_08_29_032426) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "user_name", null: false
-    t.string "user_area", null: false
     t.string "curriculum", null: false
-    t.integer "curriculum_num", default: 1, null: false
-    t.boolean "video_available", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "user_address", null: false
