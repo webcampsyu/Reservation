@@ -44,7 +44,7 @@
             <% else %>
               <ul>
                 <li><%= link_to "マイページ", user_path(:id) %></li>
-                <li><%= link_to "トレーニング予約", user_path(:id) %></li>
+                <li><%= link_to "トレーニング予約", user_choice_path(:user_id) %></li>
               </ul>
             <% end %>
           
