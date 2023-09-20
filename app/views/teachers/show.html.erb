@@ -42,7 +42,7 @@
   
   <h3>予約一覧</h3>
   <dl class="show">
-    <%= teacher_reservations.each do |teacher_reservation| %>
+    <%= @teacher_reservations.each do |teacher_reservation| %>
       <dt>開始時間</dt>
       <dd>
         <%= l teacher_reservation.start_time, format: :short %>
