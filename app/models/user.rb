@@ -12,11 +12,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: 'guest@example.com', user_name: 'ゲスト', user_address: '東京', curriculum: 'ボディメイク') do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.user_name = "ゲストユーザー"
-      user.curriculum = "ダイエット"
-      user.user_address = "宮城県富谷市成田"
     end 
   end 
   

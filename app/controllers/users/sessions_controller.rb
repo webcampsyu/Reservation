@@ -14,9 +14,9 @@ class Users::SessionsController < Devise::SessionsController
   def guest_sign_in
     user = User.guest
     sign_in user # deviseのメソッドでこのユーザーをログインさせる
-    redirect_to user_path(id: user.id), notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to user_path(:id), notice: 'ゲストユーザーとしてログインしました。' 
   end 
-
+  
   # GET /resource/sign_in
   # def new
   #   super
